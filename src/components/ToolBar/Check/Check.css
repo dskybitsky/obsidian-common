@@ -1,0 +1,6 @@
+label.toolbar-check {
+    display: flex;
+    align-items: center;
+    padding: var(--size-2-2) var(--size-2-3);
+    color: var(--text-muted);
+}

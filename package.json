@@ -1,43 +1,42 @@
 {
     "name": "skybitsky-common",
-    "version": "0.0.1",
-    "description": "Common libraries for Skybitsky Obsidian plugins.",
-    "main": "dist/main.js",
-    "typings": "dist/index.d.ts",
+    "version": "0.1.0",
+    "description": "Common library for Skybitsky plugins.",
+    "scripts": {
+        "lint": "eslint . --ext .ts,.tsx",
+        "build": "npm run lint && rollup --config rollup.config.js --environment BUILD:production"
+    },
+    "author": "Skybitsky",
+    "license": "MIT",
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^21.0.1",
+        "@rollup/plugin-node-resolve": "^13.0.6",
+        "@rollup/plugin-typescript": "^8.3.0",
+        "@types/react": "^18.2.22",
+        "eslint": "^8.49.0",
+        "@typescript-eslint/eslint-plugin": "^6.7.2",
+        "@typescript-eslint/parser": "^6.7.2",
+        "eslint-config-airbnb": "^19.0.4",
+        "eslint-config-airbnb-typescript": "^17.1.0",
+        "eslint-plugin-import": "^2.28.1",
+        "eslint-plugin-jsx-a11y": "^6.7.1",
+        "eslint-plugin-react": "^7.33.2",
+        "prettier": "^3.0.3",
+        "rollup": "^2.60.0",
+        "rollup-plugin-dts": "^4.0.1",
+        "rollup-plugin-styles": "^4.0.0",
+        "tslib": "^2.6.2",
+        "typescript": "^4.4.4"
+    },
+    "dependencies": {
+        "obsidian": "latest",
+        "obsidian-dataview": "0.5.56",
+        "react": "^18.2.0"
+    },
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
     "files": [
         "dist"
     ],
-    "directories": {
-        "dist": "dist"
-    },
-    "scripts": {
-        "lint": "eslint . --ext .ts",
-        "dev": "npm run lint && vite build --watch",
-        "build": "npx svelte-check && vite build"
-    },
-    "keywords": [],
-    "author": "Skybitsky",
-    "devDependencies": {
-        "@sveltejs/vite-plugin-svelte": "^2.4.6",
-        "@tsconfig/svelte": "^5.0.2",
-        "@types/node": "^16.11.6",
-        "@typescript-eslint/eslint-plugin": "^6.7.0",
-        "@typescript-eslint/parser": "^6.7.0",
-        "builtin-modules": "3.3.0",
-        "eslint": "^8.21.0",
-        "eslint-plugin-svelte": "^2.33.1",
-        "eslint-plugin-svelte3": "^4.0.0",
-        "obsidian": "latest",
-        "obsidian-dataview": "0.5.56",
-        "svelte": "^4.2.0",
-        "svelte-check": "^3.5.1",
-        "svelte-preprocess": "^5.0.4",
-        "tslib": "2.6.2",
-        "typescript": "5.2.2",
-        "vite": "^4.4.9",
-        "vite-plugin-dts": "^3.5.3"
-    },
-    "dependencies": {
-        "lucide-svelte": "^0.279.0"
-    }
+    "types": "dist/index.d.ts"
 }
