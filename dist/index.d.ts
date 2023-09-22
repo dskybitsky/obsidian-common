@@ -12,7 +12,7 @@ interface LoadingProps {
     loading: boolean;
     children?: ReactNode;
 }
-declare const Loading: ({ loading, children }: LoadingProps) => string | number | boolean | Iterable<React.ReactNode> | React.JSX.Element | null | undefined;
+declare const Loading: ({ loading, children }: LoadingProps) => React.JSX.Element;
 
 interface CheckProps {
     label: string;

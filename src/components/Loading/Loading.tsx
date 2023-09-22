@@ -10,5 +10,6 @@ export const Loading = ({ loading, children }: LoadingProps) => {
         return <span className="loading">Loading...</span>;
     }
 
-    return children;
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    return <>{children}</>;
 };
