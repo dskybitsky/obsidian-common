@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import * as obsidian_dataview from 'obsidian-dataview';
 import { DataviewApi } from 'obsidian-dataview';
 
@@ -23,7 +23,7 @@ interface EditProps {
 declare const Edit: ({ label, value, onChange }: EditProps) => React.JSX.Element;
 
 interface ToolBarProps {
-    children?: React.ReactNode[];
+    children?: ReactNode;
 }
 declare const ToolBar: ({ children }: ToolBarProps) => React.JSX.Element;
 
@@ -43,4 +43,6 @@ declare class Reader {
     private static normalizePath;
 }
 
-export { InternalLink, InternalLinkProps, Reader, ToolBar, Check as ToolBarCheck, CheckProps as ToolBarCheckProps, Edit as ToolBarEdit, EditProps as ToolBarEditProps, ToolBarProps };
+declare function setActiveTabTitle(title: string): void;
+
+export { InternalLink, InternalLinkProps, Reader, ToolBar, Check as ToolBarCheck, CheckProps as ToolBarCheckProps, Edit as ToolBarEdit, EditProps as ToolBarEditProps, ToolBarProps, setActiveTabTitle };

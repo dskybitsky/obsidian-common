@@ -2856,5 +2856,12 @@ var Reader = /** @class */ (function () {
     return Reader;
 }());
 
-export { InternalLink, Reader, ToolBar, Check as ToolBarCheck, Edit as ToolBarEdit };
+function setActiveTabTitle(title) {
+    var tabTitleElement = document.querySelector('.workspace-tabs.mod-active .workspace-tab-header.is-active .workspace-tab-header-inner-title');
+    if (tabTitleElement && 'innerText' in tabTitleElement) {
+        tabTitleElement.innerText = title;
+    }
+}
+
+export { InternalLink, Reader, ToolBar, Check as ToolBarCheck, Edit as ToolBarEdit, setActiveTabTitle };
 //# sourceMappingURL=index.js.map
