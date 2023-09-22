@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import './ToolBar.css';
 export interface ToolBarProps {
-    children?: React.ReactNode[];
+    children?: ReactNode;
 }
 export declare const ToolBar: ({ children }: ToolBarProps) => React.JSX.Element;

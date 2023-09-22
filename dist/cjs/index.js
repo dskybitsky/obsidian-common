@@ -2860,9 +2860,17 @@ var Reader = /** @class */ (function () {
     return Reader;
 }());
 
+function setActiveTabTitle(title) {
+    var tabTitleElement = document.querySelector('.workspace-tabs.mod-active .workspace-tab-header.is-active .workspace-tab-header-inner-title');
+    if (tabTitleElement && 'innerText' in tabTitleElement) {
+        tabTitleElement.innerText = title;
+    }
+}
+
 exports.InternalLink = InternalLink;
 exports.Reader = Reader;
 exports.ToolBar = ToolBar;
 exports.ToolBarCheck = Check;
 exports.ToolBarEdit = Edit;
+exports.setActiveTabTitle = setActiveTabTitle;
 //# sourceMappingURL=index.js.map
