@@ -8,6 +8,12 @@ interface InternalLinkProps {
 }
 declare const InternalLink: ({ path, children }: InternalLinkProps) => React.JSX.Element;
 
+interface LoadingProps {
+    loading: boolean;
+    children?: ReactNode;
+}
+declare const Loading: ({ loading, children }: LoadingProps) => string | number | boolean | Iterable<React.ReactNode> | React.JSX.Element | null | undefined;
+
 interface CheckProps {
     label: string;
     checked?: boolean;
@@ -45,4 +51,4 @@ declare class Reader {
 
 declare function setActiveTabTitle(title: string): void;
 
-export { InternalLink, InternalLinkProps, Reader, ToolBar, Check as ToolBarCheck, CheckProps as ToolBarCheckProps, Edit as ToolBarEdit, EditProps as ToolBarEditProps, ToolBarProps, setActiveTabTitle };
+export { InternalLink, InternalLinkProps, Loading, LoadingProps, Reader, ToolBar, Check as ToolBarCheck, CheckProps as ToolBarCheckProps, Edit as ToolBarEdit, EditProps as ToolBarEditProps, ToolBarProps, setActiveTabTitle };
