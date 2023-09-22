@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import * as obsidian_dataview from 'obsidian-dataview';
 import { DataviewApi } from 'obsidian-dataview';
+import { Vault } from 'obsidian';
 
 interface InternalLinkProps {
     path: string;
@@ -49,6 +50,12 @@ declare class Reader {
     private static normalizePath;
 }
 
+declare class Writer {
+    protected vault: Vault;
+    constructor(vault: Vault);
+    createPage(path: string, metadata: Record<string, any>, content: string): Promise<void>;
+}
+
 declare function setActiveTabTitle(title: string): void;
 
-export { InternalLink, InternalLinkProps, Loading, LoadingProps, Reader, ToolBar, Check as ToolBarCheck, CheckProps as ToolBarCheckProps, Edit as ToolBarEdit, EditProps as ToolBarEditProps, ToolBarProps, setActiveTabTitle };
+export { InternalLink, InternalLinkProps, Loading, LoadingProps, Reader, ToolBar, Check as ToolBarCheck, CheckProps as ToolBarCheckProps, Edit as ToolBarEdit, EditProps as ToolBarEditProps, ToolBarProps, Writer, setActiveTabTitle };
