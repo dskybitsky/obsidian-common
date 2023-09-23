@@ -2783,13 +2783,12 @@ var InternalLink = function (_a) {
     return (React.createElement("a", { "data-href": path, href: path, className: "internal-link" }, children));
 };
 
-var Loading = function (_a) {
-    var loading = _a.loading, children = _a.children;
+var Container = function (_a) {
+    var loading = _a.loading, className = _a.className, children = _a.children;
     if (loading) {
         return React.createElement("span", { className: "loading" }, "Loading...");
     }
-    // eslint-disable-next-line react/jsx-no-useless-fragment
-    return React.createElement(React.Fragment, null, children);
+    return React.createElement("div", { className: className }, children);
 };
 
 var e=[],t=[];function n(n,r){if(n&&"undefined"!=typeof document){var a,s=!0===r.prepend?"prepend":"append",d=!0===r.singleTag,i="string"==typeof r.container?document.querySelector(r.container):document.getElementsByTagName("head")[0];if(d){var u=e.indexOf(i);-1===u&&(u=e.push(i)-1,t[u]={}),a=t[u]&&t[u][s]?t[u][s]:t[u][s]=c();}else a=c();65279===n.charCodeAt(0)&&(n=n.substring(1)),a.styleSheet?a.styleSheet.cssText+=n:a.appendChild(document.createTextNode(n));}function c(){var e=document.createElement("style");if(e.setAttribute("type","text/css"),r.attributes)for(var t=Object.keys(r.attributes),n=0;n<t.length;n++)e.setAttribute(t[n],r.attributes[t[n]]);var a="prepend"===s?"afterbegin":"beforeend";return i.insertAdjacentElement(a,e),e}}
@@ -6361,5 +6360,5 @@ function setActiveTabTitle(title) {
     }
 }
 
-export { InternalLink, Loading, Reader, ToolBar, Check as ToolBarCheck, Edit as ToolBarEdit, Writer, setActiveTabTitle };
+export { Container, InternalLink, Reader, ToolBar, Check as ToolBarCheck, Edit as ToolBarEdit, Writer, setActiveTabTitle };
 //# sourceMappingURL=index.js.map

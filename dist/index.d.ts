@@ -9,11 +9,12 @@ interface InternalLinkProps {
 }
 declare const InternalLink: ({ path, children }: InternalLinkProps) => React.JSX.Element;
 
-interface LoadingProps {
+interface ContainerProps {
     loading: boolean;
+    className?: string;
     children?: ReactNode;
 }
-declare const Loading: ({ loading, children }: LoadingProps) => React.JSX.Element;
+declare const Container: ({ loading, className, children }: ContainerProps) => React.JSX.Element;
 
 interface CheckProps {
     label: string;
@@ -58,4 +59,4 @@ declare class Writer {
 
 declare function setActiveTabTitle(title: string): void;
 
-export { InternalLink, InternalLinkProps, Loading, LoadingProps, Reader, ToolBar, Check as ToolBarCheck, CheckProps as ToolBarCheckProps, Edit as ToolBarEdit, EditProps as ToolBarEditProps, ToolBarProps, Writer, setActiveTabTitle };
+export { Container, ContainerProps, InternalLink, InternalLinkProps, Reader, ToolBar, Check as ToolBarCheck, CheckProps as ToolBarCheckProps, Edit as ToolBarEdit, EditProps as ToolBarEditProps, ToolBarProps, Writer, setActiveTabTitle };

@@ -1,3 +1,3 @@
 export * from './InternalLink';
-export * from './Loading';
+export * from './Container';
 export * from './ToolBar';
