@@ -42163,11 +42163,6 @@ class ReactPlugin extends Plugin {
         this.registerEvent(this.app.metadataCache.on('dataview:index-ready', this.onDataviewIndexReady, this));
         this.registerEvent(this.app.metadataCache.on('dataview:metadata-change', this.onDataviewMetadataChange, this));
     }
-    registerElement(container, context, elementFactory) {
-        const root = createRoot(container);
-        this.registerRoot(root, context.sourcePath);
-        this.elementsFactoriesIndex.set(root, elementFactory);
-    }
     onDataviewIndexReady() {
         this.renderAllRoots();
     }
@@ -42176,6 +42171,12 @@ class ReactPlugin extends Plugin {
             return;
         }
         this.renderRootsByPath(getRootFolder(page.path));
+    }
+    registerElement(container, context, elementFactory) {
+        const root = createRoot(container);
+        this.registerRoot(root, context.sourcePath);
+        this.elementsFactoriesIndex.set(root, elementFactory);
+        return root;
     }
     registerRoot(root, path) {
         var _a;
@@ -42187,7 +42188,6 @@ class ReactPlugin extends Plugin {
         if (parentPath !== path) {
             this.registerRoot(root, parentPath);
         }
-        return root;
     }
     renderAllRoots() {
         for (const [root, elementFactory] of this.elementsFactoriesIndex) {

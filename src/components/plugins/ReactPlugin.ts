@@ -68,18 +68,6 @@ export class ReactPlugin extends Plugin {
         );
     }
 
-    protected registerElement(
-        container: HTMLElement,
-        context: MarkdownPostProcessorContext,
-        elementFactory: () => ReactElement,
-    ): void {
-        const root = createRoot(container);
-
-        this.registerRoot(root, context.sourcePath);
-
-        this.elementsFactoriesIndex.set(root, elementFactory);
-    }
-
     protected onDataviewIndexReady() {
         this.renderAllRoots();
     }
@@ -92,7 +80,21 @@ export class ReactPlugin extends Plugin {
         this.renderRootsByPath(getRootFolder(page.path));
     }
 
-    protected registerRoot(root: Root, path: string): Root {
+    protected registerElement(
+        container: HTMLElement,
+        context: MarkdownPostProcessorContext,
+        elementFactory: () => ReactElement,
+    ): Root {
+        const root = createRoot(container);
+
+        this.registerRoot(root, context.sourcePath);
+
+        this.elementsFactoriesIndex.set(root, elementFactory);
+
+        return root;
+    }
+
+    protected registerRoot(root: Root, path: string) {
         if (!this.rootsIndex.has(path)) {
             this.rootsIndex.set(path, []);
         }
@@ -104,8 +106,6 @@ export class ReactPlugin extends Plugin {
         if (parentPath !== path) {
             this.registerRoot(root, parentPath);
         }
-
-        return root;
     }
 
     protected renderAllRoots(): void {

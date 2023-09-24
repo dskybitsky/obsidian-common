@@ -18,10 +18,10 @@ declare class ReactPlugin extends Plugin {
     onload(): void;
     onunload(): void;
     protected registerEvents(): void;
-    protected registerElement(container: HTMLElement, context: MarkdownPostProcessorContext, elementFactory: () => ReactElement): void;
     protected onDataviewIndexReady(): void;
     protected onDataviewMetadataChange(_type: string, page: any): void;
-    protected registerRoot(root: Root, path: string): Root;
+    protected registerElement(container: HTMLElement, context: MarkdownPostProcessorContext, elementFactory: () => ReactElement): Root;
+    protected registerRoot(root: Root, path: string): void;
     protected renderAllRoots(): void;
     protected renderRootsByPath(path: string): void;
     protected unmountAllRoots(): void;
