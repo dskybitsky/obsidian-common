@@ -42171,7 +42171,6 @@ class ReactPlugin extends obsidian.Plugin {
         const root = createRoot(container);
         this.registerRoot(root, context.sourcePath);
         this.elementsFactoriesIndex.set(root, elementFactory);
-        root.render(elementFactory());
     }
     onDataviewIndexReady() {
         this.renderAllRoots();

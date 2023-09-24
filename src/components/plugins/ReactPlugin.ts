@@ -78,8 +78,6 @@ export class ReactPlugin extends Plugin {
         this.registerRoot(root, context.sourcePath);
 
         this.elementsFactoriesIndex.set(root, elementFactory);
-
-        root.render(elementFactory());
     }
 
     protected onDataviewIndexReady() {
