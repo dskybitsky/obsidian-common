@@ -1,7 +1,52 @@
-import React, { ReactNode } from 'react';
+import { Plugin, App, PluginManifest, MarkdownPostProcessorContext, Vault } from 'obsidian';
+import { Root } from 'react-dom/client';
 import * as obsidian_dataview from 'obsidian-dataview';
 import { DataviewApi } from 'obsidian-dataview';
-import { Vault } from 'obsidian';
+import React, { ReactNode, ReactElement } from 'react';
+
+declare module 'obsidian' {
+    interface MetadataCache {
+        on(name: 'dataview:index-ready', callback: () => void, ctx?: any): EventRef;
+        on(name: 'dataview:metadata-change', callback: (type: string, page: any) => void, ctx?: any): EventRef;
+    }
+}
+declare class ReactPlugin extends Plugin {
+    dataviewApi: DataviewApi;
+    readonly rootsIndex: Map<string, Root[]>;
+    readonly elementsFactoriesIndex: Map<Root, () => ReactNode>;
+    constructor(app: App, manifest: PluginManifest);
+    onload(): Promise<void>;
+    onunload(): void;
+    protected registerEvents(): void;
+    protected processBlock(container: HTMLElement, context: MarkdownPostProcessorContext, child: ReactElement): void;
+    protected onDataviewIndexReady(): void;
+    protected onDataviewMetadataChange(_type: string, page: any): void;
+    protected registerRoot(root: Root, path: string): void;
+    protected renderAllRoots(): void;
+    protected renderRootsByPath(path: string): void;
+}
+
+declare class Reader {
+    protected api: DataviewApi;
+    static readonly FolderIndex = "index";
+    static readonly FolderIndexExt: string;
+    constructor(api: DataviewApi);
+    getPage(path: string): Record<string, any> | undefined;
+    getPages(query: string): obsidian_dataview.DataArray<Record<string, any>>;
+    getPagesByPath(path: string): obsidian_dataview.DataArray<Record<string, any>>;
+    getPagesAtDepth(query: string, depth?: number): obsidian_dataview.DataArray<Record<string, any>>;
+    getPagesByPathAtDepth(path: string, depth?: number): obsidian_dataview.DataArray<Record<string, any>>;
+    getPagesByPathAtDepthRel(path: string, depth?: number): obsidian_dataview.DataArray<Record<string, any>>;
+    private static isPageAtDepth;
+    private static pathToSource;
+    private static normalizePath;
+}
+
+declare class Writer {
+    protected vault: Vault;
+    constructor(vault: Vault);
+    createPage(path: string, metadata: Record<string, any>, content: string): Promise<void>;
+}
 
 interface InternalLinkProps {
     path: string;
@@ -35,28 +80,9 @@ interface ToolBarProps {
 }
 declare const ToolBar: ({ children }: ToolBarProps) => React.JSX.Element;
 
-declare class Reader {
-    protected api: DataviewApi;
-    static readonly FolderIndex = "index";
-    static readonly FolderIndexExt: string;
-    constructor(api: DataviewApi);
-    getPage(path: string): Record<string, any> | undefined;
-    getPages(query: string): obsidian_dataview.DataArray<Record<string, any>>;
-    getPagesByPath(path: string): obsidian_dataview.DataArray<Record<string, any>>;
-    getPagesAtDepth(query: string, depth?: number): obsidian_dataview.DataArray<Record<string, any>>;
-    getPagesByPathAtDepth(path: string, depth?: number): obsidian_dataview.DataArray<Record<string, any>>;
-    getPagesByPathAtDepthRel(path: string, depth?: number): obsidian_dataview.DataArray<Record<string, any>>;
-    private static isPageAtDepth;
-    private static pathToSource;
-    private static normalizePath;
-}
-
-declare class Writer {
-    protected vault: Vault;
-    constructor(vault: Vault);
-    createPage(path: string, metadata: Record<string, any>, content: string): Promise<void>;
-}
-
 declare function setActiveTabTitle(title: string): void;
 
-export { Container, ContainerProps, InternalLink, InternalLinkProps, Reader, ToolBar, Check as ToolBarCheck, CheckProps as ToolBarCheckProps, Edit as ToolBarEdit, EditProps as ToolBarEditProps, ToolBarProps, Writer, setActiveTabTitle };
+declare const getRootFolder: (path: string) => string;
+declare const getFolder: (path: string) => string;
+
+export { Container, ContainerProps, InternalLink, InternalLinkProps, ReactPlugin, Reader, ToolBar, Check as ToolBarCheck, CheckProps as ToolBarCheckProps, Edit as ToolBarEdit, EditProps as ToolBarEditProps, ToolBarProps, Writer, getFolder, getRootFolder, setActiveTabTitle };
