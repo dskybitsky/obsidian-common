@@ -15,7 +15,7 @@ declare class ReactPlugin extends Plugin {
     readonly rootsIndex: Map<string, Root[]>;
     readonly elementsFactoriesIndex: Map<Root, () => ReactNode>;
     constructor(app: App, manifest: PluginManifest);
-    onload(): Promise<void>;
+    onload(): void;
     onunload(): void;
     protected registerEvents(): void;
     protected processBlock(container: HTMLElement, context: MarkdownPostProcessorContext, child: ReactElement): void;

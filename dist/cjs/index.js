@@ -42184,7 +42184,7 @@ class ReactPlugin extends obsidian.Plugin {
         }
         this.dataviewApi = dataviewApi;
     }
-    async onload() {
+    onload() {
         this.registerEvents();
     }
     onunload() {

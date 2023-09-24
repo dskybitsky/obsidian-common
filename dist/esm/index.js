@@ -42180,7 +42180,7 @@ class ReactPlugin extends Plugin {
         }
         this.dataviewApi = dataviewApi;
     }
-    async onload() {
+    onload() {
         this.registerEvents();
     }
     onunload() {
