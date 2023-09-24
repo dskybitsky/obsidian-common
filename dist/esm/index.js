@@ -42129,33 +42129,6 @@ var getAPI_1 = lib.getAPI = getAPI;
 lib.isPluginEnabled = isPluginEnabled;
 lib.parseField = parseField;
 
-const InternalLink = ({ path, children }) => (React.createElement("a", { "data-href": path, href: path, className: "internal-link" }, children));
-
-const Container = ({ loading, className, children }) => {
-    if (loading) {
-        return React.createElement("span", { className: "loading" }, "Loading...");
-    }
-    return React.createElement("div", { className: className }, children);
-};
-
-var e=[],t=[];function n(n,r){if(n&&"undefined"!=typeof document){var a,s=!0===r.prepend?"prepend":"append",d=!0===r.singleTag,i="string"==typeof r.container?document.querySelector(r.container):document.getElementsByTagName("head")[0];if(d){var u=e.indexOf(i);-1===u&&(u=e.push(i)-1,t[u]={}),a=t[u]&&t[u][s]?t[u][s]:t[u][s]=c();}else a=c();65279===n.charCodeAt(0)&&(n=n.substring(1)),a.styleSheet?a.styleSheet.cssText+=n:a.appendChild(document.createTextNode(n));}function c(){var e=document.createElement("style");if(e.setAttribute("type","text/css"),r.attributes)for(var t=Object.keys(r.attributes),n=0;n<t.length;n++)e.setAttribute(t[n],r.attributes[t[n]]);var a="prepend"===s?"afterbegin":"beforeend";return i.insertAdjacentElement(a,e),e}}
-
-var css$1 = "label.toolbar-check {\n    display: flex;\n    align-items: center;\n    padding: var(--size-2-2) var(--size-2-3);\n    color: var(--text-muted);\n}\n";
-n(css$1,{});
-
-const Check = ({ label, checked = false, onChange }) => (
-// eslint-disable-next-line jsx-a11y/label-has-associated-control
-React.createElement("label", { className: "toolbar-check" },
-    React.createElement("input", { type: "checkbox", checked: checked, onChange: (e) => onChange(e.target.checked) }),
-    label));
-
-const Edit = ({ label, value, onChange }) => (React.createElement("input", { type: "text", placeholder: label, value: value, onChange: (e) => onChange(e.target.value) }));
-
-var css = "div.toolbar {\n    position: relative;\n    display: flex;\n    font-size: var(--font-adaptive-smaller);\n    justify-content: flex-end;\n    gap: 0.5rem;\n}\n";
-n(css,{});
-
-const ToolBar = ({ children }) => (React.createElement("div", { className: "toolbar" }, children));
-
 function setActiveTabTitle(title) {
     const tabTitleElement = document.querySelector('.workspace-tabs.mod-active .workspace-tab-header.is-active .workspace-tab-header-inner-title');
     if (tabTitleElement && 'innerText' in tabTitleElement) {
@@ -42190,13 +42163,9 @@ class ReactPlugin extends Plugin {
         this.registerEvent(this.app.metadataCache.on('dataview:index-ready', this.onDataviewIndexReady, this));
         this.registerEvent(this.app.metadataCache.on('dataview:metadata-change', this.onDataviewMetadataChange, this));
     }
-    processBlock(container, context, child) {
+    registerElement(container, context, elementFactory) {
         const root = createRoot(container);
         this.registerRoot(root, context.sourcePath);
-        const elementFactory = () => react.exports.createElement(Container, {
-            loading: !this.dataviewApi.index.initialized,
-            className: 'sbs-budget',
-        }, react.exports.cloneElement(child));
         this.elementsFactoriesIndex.set(root, elementFactory);
         root.render(elementFactory());
     }
@@ -45711,6 +45680,33 @@ class Writer {
         await this.vault.create(path, `${metadataString}${content}`);
     }
 }
+
+const InternalLink = ({ path, children }) => (React.createElement("a", { "data-href": path, href: path, className: "internal-link" }, children));
+
+const Container = ({ loading, className, children }) => {
+    if (loading) {
+        return React.createElement("span", { className: "loading" }, "Loading...");
+    }
+    return React.createElement("div", { className: className }, children);
+};
+
+var e=[],t=[];function n(n,r){if(n&&"undefined"!=typeof document){var a,s=!0===r.prepend?"prepend":"append",d=!0===r.singleTag,i="string"==typeof r.container?document.querySelector(r.container):document.getElementsByTagName("head")[0];if(d){var u=e.indexOf(i);-1===u&&(u=e.push(i)-1,t[u]={}),a=t[u]&&t[u][s]?t[u][s]:t[u][s]=c();}else a=c();65279===n.charCodeAt(0)&&(n=n.substring(1)),a.styleSheet?a.styleSheet.cssText+=n:a.appendChild(document.createTextNode(n));}function c(){var e=document.createElement("style");if(e.setAttribute("type","text/css"),r.attributes)for(var t=Object.keys(r.attributes),n=0;n<t.length;n++)e.setAttribute(t[n],r.attributes[t[n]]);var a="prepend"===s?"afterbegin":"beforeend";return i.insertAdjacentElement(a,e),e}}
+
+var css$1 = "label.toolbar-check {\n    display: flex;\n    align-items: center;\n    padding: var(--size-2-2) var(--size-2-3);\n    color: var(--text-muted);\n}\n";
+n(css$1,{});
+
+const Check = ({ label, checked = false, onChange }) => (
+// eslint-disable-next-line jsx-a11y/label-has-associated-control
+React.createElement("label", { className: "toolbar-check" },
+    React.createElement("input", { type: "checkbox", checked: checked, onChange: (e) => onChange(e.target.checked) }),
+    label));
+
+const Edit = ({ label, value, onChange }) => (React.createElement("input", { type: "text", placeholder: label, value: value, onChange: (e) => onChange(e.target.value) }));
+
+var css = "div.toolbar {\n    position: relative;\n    display: flex;\n    font-size: var(--font-adaptive-smaller);\n    justify-content: flex-end;\n    gap: 0.5rem;\n}\n";
+n(css,{});
+
+const ToolBar = ({ children }) => (React.createElement("div", { className: "toolbar" }, children));
 
 export { Container, InternalLink, ReactPlugin, Reader, ToolBar, Check as ToolBarCheck, Edit as ToolBarEdit, Writer, getFolder, getRootFolder, setActiveTabTitle };
 //# sourceMappingURL=index.js.map

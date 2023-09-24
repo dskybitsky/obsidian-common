@@ -3,12 +3,9 @@ import type { MarkdownPostProcessorContext, PluginManifest } from 'obsidian';
 import { createRoot, Root } from 'react-dom/client';
 import { DataviewApi, getAPI as getDataviewApi } from 'obsidian-dataview';
 import {
-    cloneElement,
-    createElement,
     ReactElement,
     ReactNode,
 } from 'react';
-import { Container } from '../../ui';
 import { getFolder, getRootFolder } from '../../utils';
 
 declare module 'obsidian' {
@@ -71,19 +68,14 @@ export class ReactPlugin extends Plugin {
         );
     }
 
-    protected processBlock(
+    protected registerElement(
         container: HTMLElement,
         context: MarkdownPostProcessorContext,
-        child: ReactElement,
+        elementFactory: () => ReactElement,
     ): void {
         const root = createRoot(container);
 
         this.registerRoot(root, context.sourcePath);
-
-        const elementFactory = () => createElement(Container, {
-            loading: !this.dataviewApi.index.initialized,
-            className: 'sbs-budget',
-        }, cloneElement(child));
 
         this.elementsFactoriesIndex.set(root, elementFactory);
 
