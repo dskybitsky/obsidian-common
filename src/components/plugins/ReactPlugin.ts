@@ -50,11 +50,7 @@ export class ReactPlugin extends Plugin {
     }
 
     onunload() {
-        for (const [, roots] of this.rootsIndex) {
-            for (const root of roots) {
-                root.unmount();
-            }
-        }
+        this.clearAllRoots();
     }
 
     protected registerEvents(): void {
@@ -140,5 +136,20 @@ export class ReactPlugin extends Plugin {
                 root.render(elementFactory());
             }
         }
+    }
+
+    protected unmountAllRoots(): void {
+        for (const [, roots] of this.rootsIndex) {
+            for (const root of roots) {
+                root.unmount();
+            }
+        }
+    }
+
+    protected clearAllRoots(): void {
+        this.unmountAllRoots();
+
+        this.elementsFactoriesIndex.clear();
+        this.rootsIndex.clear();
     }
 }

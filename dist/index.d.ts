@@ -24,6 +24,8 @@ declare class ReactPlugin extends Plugin {
     protected registerRoot(root: Root, path: string): void;
     protected renderAllRoots(): void;
     protected renderRootsByPath(path: string): void;
+    protected unmountAllRoots(): void;
+    protected clearAllRoots(): void;
 }
 
 declare class Reader {

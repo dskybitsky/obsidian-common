@@ -42188,11 +42188,7 @@ class ReactPlugin extends obsidian.Plugin {
         this.registerEvents();
     }
     onunload() {
-        for (const [, roots] of this.rootsIndex) {
-            for (const root of roots) {
-                root.unmount();
-            }
-        }
+        this.clearAllRoots();
     }
     registerEvents() {
         this.registerEvent(this.app.metadataCache.on('dataview:index-ready', this.onDataviewIndexReady, this));
@@ -42244,6 +42240,18 @@ class ReactPlugin extends obsidian.Plugin {
                 root.render(elementFactory());
             }
         }
+    }
+    unmountAllRoots() {
+        for (const [, roots] of this.rootsIndex) {
+            for (const root of roots) {
+                root.unmount();
+            }
+        }
+    }
+    clearAllRoots() {
+        this.unmountAllRoots();
+        this.elementsFactoriesIndex.clear();
+        this.rootsIndex.clear();
     }
 }
 
