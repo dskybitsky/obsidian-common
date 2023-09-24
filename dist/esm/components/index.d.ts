@@ -1,2 +1,1 @@
-export * from './InternalLink';
-export * from './ToolBar';
+export * from './plugins';
