@@ -1,4 +1,4 @@
-import { Plugin, App, PluginManifest, MarkdownPostProcessorContext, Vault } from 'obsidian';
+import { Plugin, App, PluginManifest, Vault } from 'obsidian';
 import { Root } from 'react-dom/client';
 import * as obsidian_dataview from 'obsidian-dataview';
 import { DataviewApi } from 'obsidian-dataview';
@@ -20,7 +20,7 @@ declare class ReactPlugin extends Plugin {
     protected registerEvents(): void;
     protected onDataviewIndexReady(): void;
     protected onDataviewMetadataChange(_type: string, page: any): void;
-    protected registerElement(container: HTMLElement, context: MarkdownPostProcessorContext, elementFactory: () => ReactElement): Root;
+    protected registerElement(root: Root, path: string, elementFactory: () => ReactElement): Root;
     protected registerRoot(root: Root, path: string): void;
     protected renderAllRoots(): void;
     protected renderRootsByPath(path: string): void;

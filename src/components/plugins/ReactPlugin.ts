@@ -1,6 +1,6 @@
 import { App, Plugin } from 'obsidian';
-import type { MarkdownPostProcessorContext, PluginManifest } from 'obsidian';
-import { createRoot, Root } from 'react-dom/client';
+import type { PluginManifest } from 'obsidian';
+import { Root } from 'react-dom/client';
 import { DataviewApi, getAPI as getDataviewApi } from 'obsidian-dataview';
 import {
     ReactElement,
@@ -81,13 +81,11 @@ export class ReactPlugin extends Plugin {
     }
 
     protected registerElement(
-        container: HTMLElement,
-        context: MarkdownPostProcessorContext,
+        root: Root,
+        path: string,
         elementFactory: () => ReactElement,
-    ): Root {
-        const root = createRoot(container);
-
-        this.registerRoot(root, context.sourcePath);
+    ) {
+        this.registerRoot(root, path);
 
         this.elementsFactoriesIndex.set(root, elementFactory);
 

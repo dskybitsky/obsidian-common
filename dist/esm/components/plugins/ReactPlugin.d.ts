@@ -1,5 +1,5 @@
 import { App, Plugin } from 'obsidian';
-import type { MarkdownPostProcessorContext, PluginManifest } from 'obsidian';
+import type { PluginManifest } from 'obsidian';
 import { Root } from 'react-dom/client';
 import { DataviewApi } from 'obsidian-dataview';
 import { ReactElement, ReactNode } from 'react';
@@ -19,7 +19,7 @@ export declare class ReactPlugin extends Plugin {
     protected registerEvents(): void;
     protected onDataviewIndexReady(): void;
     protected onDataviewMetadataChange(_type: string, page: any): void;
-    protected registerElement(container: HTMLElement, context: MarkdownPostProcessorContext, elementFactory: () => ReactElement): Root;
+    protected registerElement(root: Root, path: string, elementFactory: () => ReactElement): Root;
     protected registerRoot(root: Root, path: string): void;
     protected renderAllRoots(): void;
     protected renderRootsByPath(path: string): void;
