@@ -42191,6 +42191,7 @@ class ReactPlugin extends obsidian.Plugin {
         if (parentPath !== path) {
             this.registerRoot(root, parentPath);
         }
+        return root;
     }
     renderAllRoots() {
         for (const [root, elementFactory] of this.elementsFactoriesIndex) {

@@ -92,7 +92,7 @@ export class ReactPlugin extends Plugin {
         this.renderRootsByPath(getRootFolder(page.path));
     }
 
-    protected registerRoot(root: Root, path: string) {
+    protected registerRoot(root: Root, path: string): Root {
         if (!this.rootsIndex.has(path)) {
             this.rootsIndex.set(path, []);
         }
@@ -104,6 +104,8 @@ export class ReactPlugin extends Plugin {
         if (parentPath !== path) {
             this.registerRoot(root, parentPath);
         }
+
+        return root;
     }
 
     protected renderAllRoots(): void {
