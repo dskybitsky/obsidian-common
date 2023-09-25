@@ -12023,6 +12023,10 @@ class Writer {
         const metadataString = `---\n${yaml}---\n`;
         await this.vault.create(path, `${metadataString}${content}`);
     }
+    hasPage(path) {
+        const file = this.vault.getAbstractFileByPath(path);
+        return file !== null;
+    }
 }
 
 var react = {exports: {}};

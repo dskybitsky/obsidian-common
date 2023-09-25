@@ -18,4 +18,10 @@ export class Writer {
 
         await this.vault.create(path, `${metadataString}${content}`);
     }
+
+    hasPage(path: string): boolean {
+        const file = this.vault.getAbstractFileByPath(path);
+
+        return file !== null;
+    }
 }
