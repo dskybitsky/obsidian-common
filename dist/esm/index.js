@@ -8478,9 +8478,9 @@ function setActiveTabTitle(title) {
 }
 
 const getRootFolder = (path) => path.split('/')[0];
-const getFolder = (path) => path
+const getFolder = (path, depth = 1) => path
     .split('/')
-    .slice(0, -1)
+    .slice(0, -1 * depth)
     .join('/');
 
 class ReactPlugin extends Plugin {

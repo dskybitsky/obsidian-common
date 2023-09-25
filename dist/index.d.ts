@@ -85,6 +85,6 @@ declare const ToolBar: ({ children }: ToolBarProps) => React.JSX.Element;
 declare function setActiveTabTitle(title: string): void;
 
 declare const getRootFolder: (path: string) => string;
-declare const getFolder: (path: string) => string;
+declare const getFolder: (path: string, depth?: number) => string;
 
 export { Container, ContainerProps, InternalLink, InternalLinkProps, ReactPlugin, Reader, ToolBar, Check as ToolBarCheck, CheckProps as ToolBarCheckProps, Edit as ToolBarEdit, EditProps as ToolBarEditProps, ToolBarProps, Writer, getFolder, getRootFolder, setActiveTabTitle };
