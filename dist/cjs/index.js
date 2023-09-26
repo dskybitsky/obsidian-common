@@ -14836,7 +14836,7 @@ n(css$1,{});
 
 const ToolBar = ({ children }) => (React.createElement("div", { className: "toolbar" }, children));
 
-var css = "div.message {\n    border: 1px solid;\n    border-radius: 6px;\n    display: flex;\n    width: 100%;\n    font-size: var(--font-adaptive-small);\n}\n\ndiv.message.error {\n    background-color: lightsalmon;\n    border-color: red;\n}\n\ndiv.message.warning {\n    background-color: lightyellow;\n    border-color: yellow;\n}\n\ndiv.message.info {\n    border-color: var(--color-accent);\n}\n";
+var css = "div.message {\n    border: 1px solid;\n    border-radius: 6px;\n    display: flex;\n    width: 100%;\n    font-size: var(--font-adaptive-smallest);\n}\n\ndiv.message.error {\n    border-color: var(--color-red);\n}\n\ndiv.message.warning {\n    border-color: var(--color-yellow);\n}\n\ndiv.message.info {\n    border-color: var(--color-accent);\n}\n";
 n(css,{});
 
 const Message = ({ children, severity = 'info' }) => (React.createElement("div", { className: `message ${severity}` }, children));
