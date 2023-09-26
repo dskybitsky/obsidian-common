@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import './Message.css';
 
 export interface MessageProps {
-    text: string,
+    children?: ReactNode,
     severity?: 'error' | 'warning' | 'info'
 }
 
-export const Message = ({ text, severity = 'error' }: MessageProps) => (
+export const Message = ({ children, severity = 'info' }: MessageProps) => (
     <div className={`message ${severity}`}>
-        {text}
+        {children}
     </div>
 );

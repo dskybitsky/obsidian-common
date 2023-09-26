@@ -84,10 +84,10 @@ interface ToolBarProps {
 declare const ToolBar: ({ children }: ToolBarProps) => React.JSX.Element;
 
 interface MessageProps {
-    text: string;
+    children?: ReactNode;
     severity?: 'error' | 'warning' | 'info';
 }
-declare const Message: ({ text, severity }: MessageProps) => React.JSX.Element;
+declare const Message: ({ children, severity }: MessageProps) => React.JSX.Element;
 
 declare function setActiveTabTitle(title: string): void;
 

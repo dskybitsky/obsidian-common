@@ -14839,7 +14839,7 @@ const ToolBar = ({ children }) => (React.createElement("div", { className: "tool
 var css = "div.message {\n    border: 1px solid;\n    border-radius: 6px;\n}\n\ndiv.message.error {\n    background-color: lightsalmon;\n    border-color: red;\n}\n\ndiv.message.warning {\n    background-color: lightyellow;\n    border-color: yellow;\n}\n\ndiv.message.info {\n    background-color: lightgray;\n    border-color: grey;\n}\n";
 n(css,{});
 
-const Message = ({ text, severity = 'error' }) => (React.createElement("div", { className: `message ${severity}` }, text));
+const Message = ({ children, severity = 'info' }) => (React.createElement("div", { className: `message ${severity}` }, children));
 
 exports.Container = Container;
 exports.InternalLink = InternalLink;
