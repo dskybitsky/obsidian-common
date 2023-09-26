@@ -1,0 +1,19 @@
+div.message {
+    border: 1px solid;
+    border-radius: 6px;
+}
+
+div.message.error {
+    background-color: lightsalmon;
+    border-color: red;
+}
+
+div.message.warning {
+    background-color: lightyellow;
+    border-color: yellow;
+}
+
+div.message.info {
+    background-color: lightgray;
+    border-color: grey;
+}

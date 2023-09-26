@@ -83,9 +83,15 @@ interface ToolBarProps {
 }
 declare const ToolBar: ({ children }: ToolBarProps) => React.JSX.Element;
 
+interface MessageProps {
+    text: string;
+    severity?: 'error' | 'warning' | 'info';
+}
+declare const Message: ({ text, severity }: MessageProps) => React.JSX.Element;
+
 declare function setActiveTabTitle(title: string): void;
 
 declare const getRootFolder: (path: string) => string;
 declare const getFolder: (path: string, depth?: number) => string;
 
-export { Container, ContainerProps, InternalLink, InternalLinkProps, ReactPlugin, Reader, ToolBar, Check as ToolBarCheck, CheckProps as ToolBarCheckProps, Edit as ToolBarEdit, EditProps as ToolBarEditProps, ToolBarProps, Writer, getFolder, getRootFolder, setActiveTabTitle };
+export { Container, ContainerProps, InternalLink, InternalLinkProps, Message, MessageProps, ReactPlugin, Reader, ToolBar, Check as ToolBarCheck, CheckProps as ToolBarCheckProps, Edit as ToolBarEdit, EditProps as ToolBarEditProps, ToolBarProps, Writer, getFolder, getRootFolder, setActiveTabTitle };
