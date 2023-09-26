@@ -48,6 +48,7 @@ declare class Writer {
     protected vault: Vault;
     constructor(vault: Vault);
     createPage(path: string, metadata: Record<string, any>, content: string): Promise<void>;
+    hasPage(path: string): boolean;
 }
 
 interface InternalLinkProps {
@@ -82,9 +83,15 @@ interface ToolBarProps {
 }
 declare const ToolBar: ({ children }: ToolBarProps) => React.JSX.Element;
 
+interface MessageProps {
+    children?: ReactNode;
+    severity?: 'error' | 'warning' | 'info';
+}
+declare const Message: ({ children, severity }: MessageProps) => React.JSX.Element;
+
 declare function setActiveTabTitle(title: string): void;
 
 declare const getRootFolder: (path: string) => string;
-declare const getFolder: (path: string) => string;
+declare const getFolder: (path: string, depth?: number) => string;
 
-export { Container, ContainerProps, InternalLink, InternalLinkProps, ReactPlugin, Reader, ToolBar, Check as ToolBarCheck, CheckProps as ToolBarCheckProps, Edit as ToolBarEdit, EditProps as ToolBarEditProps, ToolBarProps, Writer, getFolder, getRootFolder, setActiveTabTitle };
+export { Container, ContainerProps, InternalLink, InternalLinkProps, Message, MessageProps, ReactPlugin, Reader, ToolBar, Check as ToolBarCheck, CheckProps as ToolBarCheckProps, Edit as ToolBarEdit, EditProps as ToolBarEditProps, ToolBarProps, Writer, getFolder, getRootFolder, setActiveTabTitle };

@@ -8482,9 +8482,9 @@ function setActiveTabTitle(title) {
 }
 
 const getRootFolder = (path) => path.split('/')[0];
-const getFolder = (path) => path
+const getFolder = (path, depth = 1) => path
     .split('/')
-    .slice(0, -1)
+    .slice(0, -1 * depth)
     .join('/');
 
 class ReactPlugin extends obsidian.Plugin {
@@ -12023,6 +12023,10 @@ class Writer {
         const metadataString = `---\n${yaml}---\n`;
         await this.vault.create(path, `${metadataString}${content}`);
     }
+    hasPage(path) {
+        const file = this.vault.getAbstractFileByPath(path);
+        return file !== null;
+    }
 }
 
 var react = {exports: {}};
@@ -14816,8 +14820,8 @@ const Container = ({ loading, className, children }) => {
 
 var e=[],t=[];function n(n,r){if(n&&"undefined"!=typeof document){var a,s=!0===r.prepend?"prepend":"append",d=!0===r.singleTag,i="string"==typeof r.container?document.querySelector(r.container):document.getElementsByTagName("head")[0];if(d){var u=e.indexOf(i);-1===u&&(u=e.push(i)-1,t[u]={}),a=t[u]&&t[u][s]?t[u][s]:t[u][s]=c();}else a=c();65279===n.charCodeAt(0)&&(n=n.substring(1)),a.styleSheet?a.styleSheet.cssText+=n:a.appendChild(document.createTextNode(n));}function c(){var e=document.createElement("style");if(e.setAttribute("type","text/css"),r.attributes)for(var t=Object.keys(r.attributes),n=0;n<t.length;n++)e.setAttribute(t[n],r.attributes[t[n]]);var a="prepend"===s?"afterbegin":"beforeend";return i.insertAdjacentElement(a,e),e}}
 
-var css$1 = "label.toolbar-check {\n    display: flex;\n    align-items: center;\n    padding: var(--size-2-2) var(--size-2-3);\n    color: var(--text-muted);\n}\n";
-n(css$1,{});
+var css$2 = "label.toolbar-check {\n    display: flex;\n    align-items: center;\n    padding: var(--size-2-2) var(--size-2-3);\n    color: var(--text-muted);\n}\n";
+n(css$2,{});
 
 const Check = ({ label, checked = false, onChange }) => (
 // eslint-disable-next-line jsx-a11y/label-has-associated-control
@@ -14827,13 +14831,19 @@ React.createElement("label", { className: "toolbar-check" },
 
 const Edit = ({ label, value, onChange }) => (React.createElement("input", { type: "text", placeholder: label, value: value, onChange: (e) => onChange(e.target.value) }));
 
-var css = "div.toolbar {\n    position: relative;\n    display: flex;\n    font-size: var(--font-adaptive-smaller);\n    justify-content: flex-end;\n    gap: 0.5rem;\n}\n";
-n(css,{});
+var css$1 = "div.toolbar {\n    position: relative;\n    display: flex;\n    font-size: var(--font-adaptive-smaller);\n    justify-content: flex-end;\n    gap: 0.5rem;\n}\n";
+n(css$1,{});
 
 const ToolBar = ({ children }) => (React.createElement("div", { className: "toolbar" }, children));
 
+var css = "div.message {\n    border: 1px solid;\n    border-radius: 6px;\n    display: flex;\n    width: 100%;\n    font-size: var(--font-adaptive-small);\n}\n\ndiv.message.error {\n    border-color: var(--color-red);\n}\n\ndiv.message.warning {\n    border-color: var(--color-yellow);\n}\n\ndiv.message.info {\n    border-color: var(--color-accent);\n}\n";
+n(css,{});
+
+const Message = ({ children, severity = 'info' }) => (React.createElement("div", { className: `message ${severity}` }, children));
+
 exports.Container = Container;
 exports.InternalLink = InternalLink;
+exports.Message = Message;
 exports.ReactPlugin = ReactPlugin;
 exports.Reader = Reader;
 exports.ToolBar = ToolBar;

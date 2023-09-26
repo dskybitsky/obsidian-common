@@ -1,0 +1,19 @@
+div.message {
+    border: 1px solid;
+    border-radius: 6px;
+    display: flex;
+    width: 100%;
+    font-size: var(--font-adaptive-small);
+}
+
+div.message.error {
+    border-color: var(--color-red);
+}
+
+div.message.warning {
+    border-color: var(--color-yellow);
+}
+
+div.message.info {
+    border-color: var(--color-accent);
+}
