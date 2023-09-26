@@ -1,6 +1,9 @@
 div.message {
     border: 1px solid;
     border-radius: 6px;
+    display: flex;
+    width: 100%;
+    font-size: var(--font-adaptive-small);
 }
 
 div.message.error {
@@ -14,6 +17,5 @@ div.message.warning {
 }
 
 div.message.info {
-    background-color: lightgray;
-    border-color: grey;
+    border-color: var(--color-accent);
 }
