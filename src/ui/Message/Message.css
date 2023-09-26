@@ -3,7 +3,7 @@ div.message {
     border-radius: 6px;
     display: flex;
     width: 100%;
-    font-size: var(--font-adaptive-smallest);
+    font-size: var(--font-adaptive-small);
 }
 
 div.message.error {
